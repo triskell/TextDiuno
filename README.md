@@ -12,9 +12,9 @@ I have only tested it on Ubuntu, so if you succeeded on others platforms, I will
 
 #### (Debian/Ubuntu) Linux :
 
-* Install [serialport](https://github.com/JayBeavers/Reflecta) module : 
+* Install [serialport](https://github.com/JayBeavers/Reflecta) module :  
 	```bash
-	sudo apt-get install build-essential
+	sudo apt-get install build-essential  
 	npm install serialport
 	```
 * Get TextDuino on your computer :  
