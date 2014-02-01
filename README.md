@@ -3,6 +3,13 @@ TextDuino
 
 An open-source hack with Arduino and NodeJS. Send text messages from your Arduino.
 
+Note
+----
+
+I had to leave this project since Twilio free (trial) SMS service is not available in France. I could not test this part.  
+However, the serial part with [serialport](https://github.com/JayBeavers/Reflecta) works fine, so I want to keep it. That is why this project will not go further, but will not be deleted.
+I would like to hear from you if you managed to use it in a country were the Twilio service is available, or if you have any solution.
+
 
 To Install
 ----------

@@ -68,7 +68,7 @@ function sendTextMessage(){
 	    if (!error) {
 	        console.log('[INFO] Message sent at ' +  message.dateCreated + ' with SID :' + message.sid);
 	    } else {
-	        console.log('[ERR] Error while sending message.');
+	        console.log('[ERR] Error while sending message : ' + error.message);
 	    }
 	});
 	
