@@ -13,3 +13,41 @@ If you meet one (or more) of the authors some day, and you think this stuff is w
 This software is provided as-is, without any warranty. You are the only responsible with your use of this software, and author(s) can not be liable for any claim.
 
 */
+var params = require('./params');
+var SerialPort = require("node-serialport").SerialPort;
+
+var exctractData = '';
+
+console.log('started on port : ' + params.port);
+serialListener();
+
+
+function serialListener()
+{
+    var receivedData = "";
+    serialPort = new SerialPort(params.port, {
+        //Set up the default serial communication for Arduino :
+        //(Read node-serialport documentation to modify)
+        baudrate: 9600,
+        dataBits: 8,
+        stopBits: 1,
+        parity: 'none',
+        flowControl: false
+    });
+ 
+    serialPort.on("open", function () {
+      console.log('[INFO] Serial communication started.');
+        serialPort.on('data', function(data) {
+            receivedData += data.toString();
+            /*
+				Start character : {
+				End character : }
+            */
+          	if (receivedData.indexOf('{') >= 0 && receivedData.indexOf('}') >= 0) {
+           		exctractData = receivedData.substring(receivedData.indexOf('{') + 1, receivedData.indexOf('}'));
+           		receivedData = '';
+           		console.log('[DEBUG] Extracted data :' + exctractData);
+         	}
+      	});  
+    });  
+}
