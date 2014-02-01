@@ -13,17 +13,24 @@ I have only tested it on Ubuntu, so if you succeeded on others platforms, I will
 #### (Debian/Ubuntu) Linux :
 
 * Install [serialport](https://github.com/JayBeavers/Reflecta) module :  
-	```bash
+```
 	sudo apt-get install build-essential  
 	npm install serialport
-	```
+```
+* Install [twilio](http://twilioinc.wpengine.com/2013/03/introducing-the-twilio-module-for-node-js.html) module :  
+```
+	npm install twilio
+```
 * Get TextDuino on your computer :  
-	```bash
+```
 	git clone https://github.com/triskell/TextDiuno.git
-	```
-* Load .ino part on your Arduino
+```
+* Configure ```src/params.js``` to your preferences and twilio account
+* Mount a button on port 7 of your Arduino
+* Load .ino part on your Arduino using Arduino IDE
 * Launch the NodeJS part :   
-	```bash
+```
+	cd src/ 
 	node textduinode.js
-	```	
+```	
 * Have fun !

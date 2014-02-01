@@ -15,6 +15,7 @@ This software is provided as-is, without any warranty. You are the only responsi
 */
 var params = require('./params');
 var SerialPort = require("node-serialport").SerialPort;
+var twilio = require('twilio');
 
 var exctractData = '';
 
@@ -47,7 +48,28 @@ function serialListener()
            		exctractData = receivedData.substring(receivedData.indexOf('{') + 1, receivedData.indexOf('}'));
            		receivedData = '';
            		console.log('[DEBUG] Extracted data :' + exctractData);
+           		sendTextMessage();
          	}
       	});  
     });  
+}
+
+
+function sendTextMessage(){
+
+	var client = new twilio.RestClient(params.twilio.account_sid, params.twilio.auth_token);
+
+	client.sms.messages.create({
+	    to: params.twilio.recipient,
+	    from: params.twilio.number,
+	    body: params.twilio.content
+	}, function(error, message) {
+	    
+	    if (!error) {
+	        console.log('[INFO] Message sent at ' +  message.dateCreated + ' with SID :' + message.sid);
+	    } else {
+	        console.log('[ERR] Error while sending message.');
+	    }
+	});
+	
 }
